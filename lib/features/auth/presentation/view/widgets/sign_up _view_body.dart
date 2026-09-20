@@ -4,6 +4,7 @@ import 'package:fruits_hub/core/utils/app_colors.dart';
 import 'package:fruits_hub/core/utils/app_text_styles.dart';
 import 'package:fruits_hub/core/widgets/custom_button.dart';
 import 'package:fruits_hub/core/widgets/custom_text_field.dart';
+import 'package:fruits_hub/features/auth/presentation/view/widgets/do_have_account.dart';
 import 'package:fruits_hub/features/auth/presentation/view/widgets/terms_conditions.dart';
 
 class SignUpViewBody extends StatelessWidget {
@@ -40,24 +41,8 @@ class SignUpViewBody extends StatelessWidget {
               TermsAndConditions(),
               SizedBox(height: 30),
               CustomButton(onPressed: () {}, text: "إنشاء حساب جديد "),
-              SizedBox(height: 16),
-              Text.rich(
-                TextSpan(
-                  children: [
-                    TextSpan(
-                      text: "تمتلك حساب بالفعل؟",
-                      style: TextStyles.semiBold16,
-                    ),
-                    TextSpan(text: " ", style: TextStyles.semiBold16),
-                    TextSpan(
-                      text: "تسجيل دخول ",
-                      style: TextStyles.semiBold16.copyWith(
-                        color: AppColors.lightPrimaryColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              SizedBox(height: 30),
+              DoHaveAccount(),
             ],
           ),
         ),
