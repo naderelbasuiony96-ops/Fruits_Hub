@@ -27,71 +27,69 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
     return SingleChildScrollView(
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: kHorizontalPadding),
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            autovalidateMode: autouvalidateMode,
-            child: Column(
-              children: [
-                SizedBox(height: 24),
-                CustomTextFormField(
-                  onSaved: (value) {
-                    name = value!;
-                  },
-                  hintText: "الاسم كامل",
-                  textInputType: TextInputType.name,
-                ),
-                SizedBox(height: 20),
-                CustomTextFormField(
-                  onSaved: (value) {
-                    email = value!;
-                  },
-                  hintText: "البريد الإكتروني ",
-                  textInputType: TextInputType.emailAddress,
-                ),
-                SizedBox(height: 20),
-                PasswordField(
-                  onSaved: (value) {
-                    password = value!;
-                  },
-                ),
-                SizedBox(height: 16),
-                TermsAndConditions(
-                  onChanged: (value) {
-                    isTermsAccepted = value;
-                  },
-                ),
-                SizedBox(height: 30),
-                CustomButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      if (isTermsAccepted) {
-                        context
-                            .read<SignupCubit>()
-                            .createUserWithEmailAndPassword(
-                              email,
-                              password,
-                              name,
-                            );
-                      } else {
-                        buildErrorBar(
-                          context,
-                          "يجب عليك الموافقة علي الشروط والأحكام",
-                        );
-                      }
+        child: Form(
+          key: formKey,
+          autovalidateMode: autouvalidateMode,
+          child: Column(
+            children: [
+              SizedBox(height: 24),
+              CustomTextFormField(
+                onSaved: (value) {
+                  name = value!;
+                },
+                hintText: "الاسم كامل",
+                textInputType: TextInputType.name,
+              ),
+              SizedBox(height: 20),
+              CustomTextFormField(
+                onSaved: (value) {
+                  email = value!;
+                },
+                hintText: "البريد الإكتروني ",
+                textInputType: TextInputType.emailAddress,
+              ),
+              SizedBox(height: 20),
+              PasswordField(
+                onSaved: (value) {
+                  password = value!;
+                },
+              ),
+              SizedBox(height: 16),
+              TermsAndConditions(
+                onChanged: (value) {
+                  isTermsAccepted = value;
+                },
+              ),
+              SizedBox(height: 30),
+              CustomButton(
+                onPressed: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    if (isTermsAccepted) {
+                      context
+                          .read<SignupCubit>()
+                          .createUserWithEmailAndPassword(
+                            email,
+                            password,
+                            name,
+                          );
                     } else {
-                      setState(() {
-                        autouvalidateMode = AutovalidateMode.always;
-                      });
+                      buildErrorBar(
+                        context,
+                        "يجب عليك الموافقة علي الشروط والأحكام",
+                      );
                     }
-                  },
-                  text: "إنشاء حساب جديد ",
-                ),
-                SizedBox(height: 30),
-                DoHaveAccount(),
-              ],
-            ),
+                  } else {
+                    setState(() {
+                      autouvalidateMode = AutovalidateMode.always;
+                    });
+                  }
+                },
+                text: "إنشاء حساب جديد ",
+              ),
+              SizedBox(height: 30),
+              DoHaveAccount(),
+            ],
           ),
         ),
       ),
